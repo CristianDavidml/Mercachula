@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" href="../../css/perfil.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="main-header">
+            <nav class="navbar">
+                <a href="/index.html" class="logo">Mercachula</a>
+                <ul class="nav-links">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/user/profile.html">Perfil</a></li>
+                    <li><a href="../hoteles/lista_hoteles.html">Ver Empresas</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </header>
+
+        <div class="profile">
+            <aside class="profile-sidebar">
+                <ul>
+                    <li><a href="#datos-personales">Datos Personales</a></li>
+                    <li><a href="#mis-hoteles">Mis Hoteles</a></li>
+                    <li><a href="#mis-restaurantes">Mis Restaurantes</a></li>
+                </ul>
+            </aside>
+
+            <main class="profile-main">
+                <form method="post" id="updateForm">
+                    <section id="datos-personales" class="profile-section">
+                        <h2>Datos Personales</h2>
+                        <div class="profile-info">
+                            <label for="id">ID:</label>
+                            <input type="text" id="id" readonly>
+                        </div>
+                        <div class="profile-info">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre">
+                        </div>
+                        <div class="profile-info">
+                            <label for="apellido">Apellido:</label>
+                            <input type="text" id="apellido">
+                        </div>
+                        <div class="profile-info">
+                            <label for="celular">Número de Celular:</label>
+                            <input type="text" id="celular">
+                        </div>
+                        <button type="submit" class="btn">Editar</button>
+                    </section>
+                </form>
+
+                <section id="mis-hoteles" class="profile-section">
+                    <h2>Mis Hoteles</h2>
+                    <div id="hoteles-list" class="item-list"></div>
+                </section>
+
+                <section id="mis-restaurantes" class="profile-section">
+                    <h2>Mis Restaurantes</h2>
+                    <div id="restaurantes-list" class="item-list"></div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            axios.get(`https://api-mercachula-eta.vercel.app/users?token=${localStorage.getItem("token")}`, {
+                responseType: "json"
+            })
+            .then((userData) => {
+                document.getElementById("id").value = userData.data["_id"];
+                document.getElementById("nombre").value = userData.data["Nombres"];
+                document.getElementById("apellido").value = userData.data["Apellidos"];
+                document.getElementById("celular").value = userData.data["NumeroCelular"];
+                // Load user's hotels and restaurants
+                loadUserHotels(userData.data["_id"]);
+                loadUserRestaurants(userData.data["_id"]);
+            });
+
+            document.getElementById("updateForm").addEventListener("submit" , (evt) => {
+                evt.preventDefault();
+                const nombre = document.getElementById("nombre").value;
+                const apellido = document.getElementById("apellido").value;
+                const celular = document.getElementById("celular").value;
+                axios.put(`https://api-mercachula-eta.vercel.app/users?token=${localStorage.getItem("token")}`, {
+                    Nombres: nombre,
+                    Apellidos: apellido,
+                    NumeroCelular: celular
+                })
+                .then(() => {
+                    location.reload();
+                })
+            });
+
+            const loadUserHotels = (userId) => {
+                axios.get(`https://api-mercachula-eta.vercel.app/hotels?user=${userId}`)
+                .then((response) => {
+                    const hotelesList = document.getElementById("hoteles-list");
+                    response.data.forEach((hotel) => {
+                        const hotelItem = document.createElement("div");
+                        hotelItem.className = "item";
+                        hotelItem.innerHTML = `<h3>${hotel.name}</h3><p>${hotel.description}</p>`;
+                        hotelesList.appendChild(hotelItem);
+                    });
+                });
+            };
+
+            const loadUserRestaurants = (userId) => {
+                axios.get(`https://api-mercachula-eta.vercel.app/restaurants?user=${userId}`)
+                .then((response) => {
+                    const restaurantesList = document.getElementById("restaurantes-list");
+                    response.data.forEach((restaurant) => {
+                        const restaurantItem = document.createElement("div");
+                        restaurantItem.className = "item";
+                        restaurantItem.innerHTML = `<h3>${restaurant.name}</h3><p>${restaurant.description}</p>`;
+                        restaurantesList.appendChild(restaurantItem);
+                    });
+                });
+            };
+        });
+
+        // Responsive navbar script
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('nav-active');
+        });
+    </script>
+</body>
+
+</html>

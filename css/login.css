@@ -1,0 +1,160 @@
+#dangerDiv, #alertDiv, #errorDiv {
+    visibility: hidden;
+}
+
+body {
+    margin: 0%;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.inicio-principal {
+    width: 100vw;
+    min-height: 100vh;
+    background: beige;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.inicio-izquierda {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.inicio-izquierda > h1 {
+    font-size: 3vh;
+    color: #f48fb1;
+    margin-bottom: 20px;
+}
+
+.izquierda-image {
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 0px 10px 40px black;
+}
+
+.derecha-sesion {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tarjeta-derecha {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background: beige;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px black;
+}
+
+.tarjeta-derecha > h1 {
+    color: #f48fb1;
+    font-weight: 800;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.texto-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+.texto-form > input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: beige;
+    color: #f48fb1;
+    font-size: 12pt;
+    box-shadow: 0px 5px 20px black;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.texto-form > label {
+    color: #f48fb1;
+    margin-bottom: 10px;
+}
+
+.texto-form > input::placeholder {
+    color: #f48fb1;
+}
+
+.boton-inicio, .boton-registro {
+    width: 100%;
+    padding: 16px 0;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: black;
+    background-color: #f48fb1;
+    box-shadow: 0px 10px 40px -12px black;
+    text-align: center;
+    cursor: pointer;
+}
+
+.boton-inicio:hover, .boton-registro:hover {
+    background-color: #f48fb1;
+    color: rgb(237, 239, 241);
+}
+
+.boton-registro a {
+    text-decoration: none;
+    color: black;
+}
+
+.boton-registro:hover a {
+    color: rgb(237, 239, 241);
+}
+
+@media (max-width: 768px) {
+    .inicio-principal {
+        flex-direction: column;
+    }
+
+    .inicio-izquierda, .derecha-sesion {
+        width: 100%;
+        height: auto;
+        
+    }
+
+    .izquierda-image {
+        width: 60%;
+    }
+
+    .tarjeta-derecha {
+        width: 90%;
+        height: max-content;
+    }
+}
