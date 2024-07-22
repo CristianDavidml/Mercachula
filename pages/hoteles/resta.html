@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Hoteles</title>
+    <title>Lista de Restaurantes</title>
     <link rel="stylesheet" href="/css/hoteles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -17,7 +17,7 @@
                 <li class="nav-item"><a href="../perfil/perfil.html">Perfil</a></li>
                 <li class="nav-item"><a href="../hoteles/mi_hotel.html">Registrar empresa</a></li>
                 <li class="nav-item"><a href="../hoteles/lista_hoteles.html">Ver hoteles</a></li>
-                <li class="nav-item"><a href="../hoteles/resta.html">Ver restaurantes</a></li>
+                <li class="nav-item"><a href="../restaurantes/lista_restaurantes.html">Ver restaurantes</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -28,7 +28,7 @@
     </header>
 
     <main class="main-content">
-        <div class="container profile-page" id="hotels">
+        <div class="container profile-page" id="restaurants">
             <!-- Content will be inserted here dynamically -->
         </div>
     </main>
@@ -39,11 +39,11 @@
                 responseType: "json"
             })
                 .then((commerceData) => {
-                    commerceData.data.filter(obj => obj.tipo === 'Hotel').map((obj) => {
+                    commerceData.data.filter(obj => obj.tipo === 'Restaurant').map((obj) => {
                         const html = `
-                            <div class="hotel-card">
-                                <img src=${obj.image.url} alt="${obj.NombreComercio}" class="hotel-image">
-                                <div class="hotel-info">
+                            <div class="restaurant-card">
+                                <img src=${obj.image.url} alt="${obj.NombreComercio}" class="restaurant-image">
+                                <div class="restaurant-info">
                                     <h2>${obj.NombreComercio}</h2>
                                     <p><strong>Tipo:</strong> ${obj.tipo}</p>
                                     <p><strong>Contacto:</strong> ${obj.NumeroContacto}</p>
@@ -51,7 +51,7 @@
                                     <p>${obj.Descripcion}</p>
                                 </div>
                             </div>`
-                        document.getElementById("hotels").insertAdjacentHTML('beforeend', html);
+                        document.getElementById("restaurants").insertAdjacentHTML('beforeend', html);
                     })
                 })
         });
