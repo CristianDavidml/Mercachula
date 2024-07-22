@@ -39,7 +39,7 @@
                 responseType: "json"
             })
                 .then((commerceData) => {
-                    commerceData.data.filter(obj => obj.tipo === 'Restaurant').map((obj) => {
+                    commerceData.data.filter(obj => obj.tipo === 'Restaurante').map((obj) => {
                         const html = `
                             <div class="restaurant-card">
                                 <img src=${obj.image.url} alt="${obj.NombreComercio}" class="restaurant-image">
