@@ -22,10 +22,10 @@
 
     <main class="main-content">
         <div class="container">
-            <h2 class="title">Agregar Hotel</h2>
+            <h2 class="title">Agregar Comercio</h2>
             <form id="agregarHotelForm" class="form">
                 <div class="form-group">
-                    <label for="NombreComercio" class="form-label">Nombre del Hotel:</label>
+                    <label for="NombreComercio" class="form-label">Nombre del Comercio:</label>
                     <input type="text" class="form-input" id="NombreComercio" name="NombreComercio" required>
                 </div>
 
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="tipo" class="form-label">Tipo:</label>
+                    <label for="tipo" class="form-label">Tipo Cormecio:</label>
                     <select class="form-input" id="tipo" name="tipo" required>
                         <option value="Hotel">Hotel</option>
                         <option value="Restaurante">Restaurante</option>
@@ -48,22 +48,22 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="NumeroContacto" class="form-label">Número del Hotel:</label>
+                    <label for="NumeroContacto" class="form-label">Número del Comercio:</label>
                     <input type="tel" class="form-input" id="NumeroContacto" name="NumeroContacto" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="image" class="form-label">Imágenes del Hotel:</label>
+                    <label for="image" class="form-label">Imágen del Comercio:</label>
                     <input type="file" class="form-input" id="image" name="image" multiple required>
                 </div>
 
-                <button type="submit" class="btn">Agregar Hotel</button>
+                <button type="submit" class="btn">Agregar Comercio</button>
             </form>
             <div class="alert alert-danger" id="errorDiv">
                 <p>Hubo un error en la creación del comercio</p>
             </div>
             <div class="alert alert-success" id="successDiv">
-                <p>Comercio guardado</p>
+                <p>Comercio Agregado</p>
             </div>
         </div>
     </main>
