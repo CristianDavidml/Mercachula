@@ -75,7 +75,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            axios.get(`https://api-mercachula-eta.vercel.app/users?token=${localStorage.getItem("token")}`, {
+            axios.get(`https://mercachula-api.vercel.app/users?token=${localStorage.getItem("token")}`, {
                 responseType: "json"
             })
             .then((userData) => {
@@ -93,7 +93,7 @@
                 const nombre = document.getElementById("nombre").value;
                 const apellido = document.getElementById("apellido").value;
                 const celular = document.getElementById("celular").value;
-                axios.put(`https://api-mercachula-eta.vercel.app/users?token=${localStorage.getItem("token")}`, {
+                axios.put(`https://mercachula-api.vercel.app/users?token=${localStorage.getItem("token")}`, {
                     Nombres: nombre,
                     Apellidos: apellido,
                     NumeroCelular: celular
@@ -104,7 +104,7 @@
             });
 
             const loadUserHotels = (userId) => {
-                axios.get(`https://api-mercachula-eta.vercel.app/hotels?user=${userId}`)
+                axios.get(`https://mercachula-api.vercel.app/hotels?user=${userId}`)
                 .then((response) => {
                     const hotelesList = document.getElementById("hoteles-list");
                     response.data.forEach((hotel) => {
@@ -117,7 +117,7 @@
             };
 
             const loadUserRestaurants = (userId) => {
-                axios.get(`https://api-mercachula-eta.vercel.app/restaurants?user=${userId}`)
+                axios.get(`https://mercachula-api.vercel.app/restaurants?user=${userId}`)
                 .then((response) => {
                     const restaurantesList = document.getElementById("restaurantes-list");
                     response.data.forEach((restaurant) => {
@@ -138,3 +138,6 @@
 </body>
 
 </html>
+
+
+

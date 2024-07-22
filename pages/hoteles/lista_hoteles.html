@@ -79,7 +79,7 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            axios.get(`https://api-mercachula-eta.vercel.app/commerce/all?token=${localStorage.getItem("token")}`, {
+            axios.get(`https://mercachula-api.vercel.app/commerce/all?token=${localStorage.getItem("token")}`, {
                 responseType: "json"
             })
                 .then((commerceData) => {
