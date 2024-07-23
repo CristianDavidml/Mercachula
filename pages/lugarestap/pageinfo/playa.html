@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Información del Lugar</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="/lugaresTap/assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <noscript
+      ><link rel="stylesheet" href="/lugaresTap/assets/css/noscript.css"
+    /></noscript>
+    <style>
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+      }
+      .gallery img {
+        width: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+      iframe {
+        border: none;
+        border-radius: 10px;
+        width: 100%;
+        height: 450px;
+      }
+      .icon {
+        color: #2d2d2d;
+        font-size: 1.5em;
+        margin-right: 0.5em;
+      }
+      section h2 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      #header .title {
+        font-size: 1.5em;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <div class="inner">
+          <!-- Logo -->
+          <a href="index.html" class="logo">
+            <span class="symbol"><img src="/lugaresTap/images/logo.svg" alt="" /></span
+            >Mercachula<span class="title">Mercachula</span>
+          </a>
+          <!-- Nav -->
+          <nav>
+            <ul>
+              <li><a href="#menu">Menu</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Menu -->
+      <nav id="menu">
+        <h2>Menu</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="generic.html">Hoteles</a></li>
+          <li><a href="generic.html">Restaurantes</a></li>
+          <li><a href="generic.html">Inicia sesión</a></li>
+          <li><a href="elements.html">Inicia Registro</a></li>
+          <li><a href="elements.html">LugaresTap</a></li>
+        </ul>
+      </nav>
+
+      <!-- Main -->
+      <div id="main">
+        <div class="inner">
+          <h1>Playa Linda</h1>
+          <span class="image main"
+            ><img src="/lugaresTap/images/playalinda.jpg" alt="Imagen del lugar"
+          /></span>
+
+          <section>
+            <h2><i class="fas fa-info-circle icon"></i>Descripción</h2>
+            <p>
+              Se localiza en la carretera a Puerto Chiapas, por camino
+              pavimentado. Está abierta del lado del mar y de un estero. Playa
+              Linda se caracteriza por un fuerte oleaje y largas extensiones de
+              dorada arena. El lugar es muy popular entre los habitantes de
+              Tapachula, por lo que es muy concurrido los fines de semana y en
+              los periodos .
+            </p>
+          </section>
+
+          <section>
+            <h2><i class="fas fa-clock icon"></i>Horarios</h2>
+            <p>Es una zona a la que puedes llegar a la hora que quieras.</p>
+          </section>
+
+          <section>
+            <h2><i class="fas fa-map-marker-alt icon"></i>Dirección</h2>
+            <p>
+              Se llega partiendo de Tapachula por la carretera federal No. 200,
+              en dirección a Puerto Chiapas, se recorren 25 kms. Posteriormente
+              un desvío de 6 km conduce a Playa Linda
+            </p>
+          </section>
+
+          <section>
+            <h2><i class="fas fa-star icon"></i>Actividades y Atracciones</h2>
+            <ul>
+              <li>Paseos en lancha</li>
+              <li>Paseos en cuatrimotos</li>
+              <li>Pesca deportiva</li>
+              <li>Deportes playeros</li>
+              <li>Palapas</li>
+              <li>Restaurantes</li>
+              <li>Modulo de baños</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2><i class="fas fa-images icon"></i>Galería de Imágenes</h2>
+            <div class="gallery">
+              <img src="/lugaresTap/images/playa1.jpg" alt="Imagen 1" />
+              <img src="/lugaresTap/images/playa2.jpg" alt="Imagen 2" />
+              <img src="/lugaresTap/images/playa3.jpg" alt="Imagen 3" />
+            </div>
+          </section>
+
+          <section>
+            <h2><i class="fas fa-map icon"></i>Mapa</h2>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31440.27402908108!2d-92.3998435367932!3d14.674336742510304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x858e1f2f37b4b913%3A0xed6639ec4aa8c831!2s30837%20Playa%20Linda%2C%20Chis.!5e1!3m2!1ses-419!2smx!4v1721459115840!5m2!1ses-419!2smx"
+              width="600"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </section>
+
+         
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <section>
+            <h2>Contacta con Nosotros</h2>
+            <form method="post" action="#">
+              <div class="fields">
+                <div class="field half">
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Nombre"
+                  />
+                </div>
+                <div class="field half">
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Correo Electrónico"
+                  />
+                </div>
+                <div class="field">
+                  <textarea
+                    name="message"
+                    id="message"
+                    placeholder="Mensaje"
+                  ></textarea>
+                </div>
+              </div>
+              <ul class="actions">
+                <li><input type="submit" value="Enviar" class="primary" /></li>
+              </ul>
+            </form>
+          </section>
+          <section>
+            <h2>Síguenos</h2>
+            <ul class="icons">
+              <li>
+                <a href="#" class="icon brands style2 fa-twitter"
+                  ><span class="label">Twitter</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="icon brands style2 fa-facebook-f"
+                  ><span class="label">Facebook</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="icon brands style2 fa-instagram"
+                  ><span class="label">Instagram</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="icon brands style2 fa-dribbble"
+                  ><span class="label">Dribbble</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="icon brands style2 fa-github"
+                  ><span class="label">GitHub</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="icon solid style2 fa-phone"
+                  ><span class="label">Teléfono</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="icon solid style2 fa-envelope"
+                  ><span class="label">Email</span></a
+                >
+              </li>
+            </ul>
+          </section>
+          <ul class="copyright">
+            <li>&copy; Mercachula. Todos los derechos reservados.</li>
+            <li>Diseño: <a href=""></a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
