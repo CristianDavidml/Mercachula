@@ -5,74 +5,283 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuario</title>
-    <link rel="stylesheet" href="../../css/perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            margin-left: 20px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .nav-item a:hover {
+            color: #f4d03f;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background-color: #fff;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-list {
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #333;
+                flex-direction: column;
+                width: 200px;
+                display: none;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                padding: 10px;
+            }
+
+            .nav-list.nav-active {
+                display: flex;
+            }
+
+            .nav-item {
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
+
+        .profile {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-icon {
+            font-size: 50px;
+            color: #007bff;
+            margin-right: 20px;
+        }
+
+        .profile-info-main {
+            flex: 1;
+        }
+
+        .profile-info-main h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #007bff;
+        }
+
+        .profile-info-main p {
+            margin: 5px 0 0;
+            color: #666;
+        }
+
+        .profile-section {
+            margin-bottom: 20px;
+        }
+
+        .profile-section h2 {
+            margin-bottom: 10px;
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .profile-info {
+            margin-bottom: 10px;
+        }
+
+        .profile-info label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .profile-info input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn, .btn2 {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn2 {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .btn2:hover {
+            background-color: #c82333;
+        }
+
+        .botonperfil a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .botonperfil {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+
+        .botonperfil:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 
 <body>
+    <header class="header">
+        <nav class="nav">
+            <a href="/index.html" class="logo">Mercachula</a>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/index.html">Inicio</a></li>
+                <li class="nav-item"><a href="/pages/perfil/perfil.html">Perfil</a></li>
+                <li class="nav-item"><a href="/pages/hoteles/mi_hotel.html">Agregar Comercio</a></li>
+                <li class="nav-item"><a href="/pages/listadecomercios/listahoteles.html">Ver hoteles</a></li>
+                <li class="nav-item"><a href="/pages/listadecomercios/listarestaurante.html">Ver restaurantes</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
     <div class="container">
-        <header class="main-header">
-            <nav class="navbar">
-                <a href="/index.html" class="logo">Mercachula</a>
-                <ul class="nav-links">
-                    <li><a href="/index.html">Inicio</a></li>
-                    <li><a href="/pages/perfil/perfil.html">Perfil</a></li>
-                    <li><a href="/pages/listadecomercios/listahoteles.html">Hoteles</a></li>
-                    
-                </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </nav>
-        </header>
-
         <div class="profile">
-            <aside class="profile-sidebar">
-                <ul>
-                    <li><a href="./perfil.html">Datos Personales</a></li>
-                    
-                </ul>
-            </aside>
-
-            <main class="profile-main">
-                <form method="post" id="updateForm">
-                    <section id="datos-personales" class="profile-section">
-                        <h2>Datos Personales</h2>
-                        <div class="profile-info">
-                            <label for="id">ID:</label>
-                            <input type="text" id="id" readonly>
-                        </div>
-                        <div class="profile-info">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" id="nombre">
-                        </div>
-                        <div class="profile-info">
-                            <label for="apellido">Apellido:</label>
-                            <input type="text" id="apellido">
-                        </div>
-                        <div class="profile-info">
-                            <label for="celular">Número de Celular:</label>
-                            <input type="text" id="celular">
-                        </div>
-                        <button type="submit" class="btn">Editar</button>
-                        <button type="submit" id="closeSession" class="btn2">Cerrar Sesion</button>
-                    </section>
-                </form>
-
-                <section id="mis-hoteles" class="profile-section">
-                    <h2>Mis Hoteles</h2>
-                    <button class="botonperfil"><a href="/pages/hoteles/lista_hoteles.html">Entrar</a></button>
-                    
+            <div class="profile-header">
+                <i class="fas fa-user-circle profile-icon"></i>
+                <div class="profile-info-main">
+                    <h1 id="profile-name">Nombre Apellido</h1>
+                    <p id="profile-email">email@example.com</p>
+                </div>
+            </div>
+            <form method="post" id="updateForm">
+                <section id="datos-personales" class="profile-section">
+                    <h2>Datos Personales</h2>
+                    <div class="profile-info">
+                        <label for="id">ID:</label>
+                        <input type="text" id="id" readonly>
+                    </div>
+                    <div class="profile-info">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre">
+                    </div>
+                    <div class="profile-info">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido">
+                    </div>
+                    <div class="profile-info">
+                        <label for="celular">Número de Celular:</label>
+                        <input type="text" id="celular">
+                    </div>
+                    <button type="submit" class="btn">Editar</button>
+                    <button type="button" id="closeSession" class="btn2">Cerrar Sesión</button>
                 </section>
+            </form>
 
-                <section id="mis-restaurantes" class="profile-section">
-                    <h2>Mis Restaurantes</h2>
-                    <button class="botonperfil"><a href="/pages/hoteles/resta.html">Entrar</a></button>
-                    
-                </section>
-            </main>
+            <section id="mis-hoteles" class="profile-section">
+                <h2>Mis Hoteles</h2>
+                <button class="botonperfil"><a href="/pages/hoteles/lista_hoteles.html">Entrar</a></button>
+            </section>
+
+            <section id="mis-restaurantes" class="profile-section">
+                <h2>Mis Restaurantes</h2>
+                <button class="botonperfil"><a href="/pages/hoteles/resta.html">Entrar</a></button>
+            </section>
         </div>
     </div>
 
@@ -81,17 +290,17 @@
             axios.get(`https://mercachula-api.vercel.app/users?token=${localStorage.getItem("token")}`, {
                 responseType: "json"
             })
-            .then((userData) => {
-                document.getElementById("id").value = userData.data["_id"];
-                document.getElementById("nombre").value = userData.data["Nombres"];
-                document.getElementById("apellido").value = userData.data["Apellidos"];
-                document.getElementById("celular").value = userData.data["NumeroCelular"];
-                // Load user's hotels and restaurants
-                loadUserHotels(userData.data["_id"]);
-                loadUserRestaurants(userData.data["_id"]);
+            .then((response) => {
+                const user = response.data;
+                document.getElementById("id").value = user["_id"];
+                document.getElementById("nombre").value = user["Nombres"];
+                document.getElementById("apellido").value = user["Apellidos"];
+                document.getElementById("celular").value = user["NumeroCelular"];
+                document.getElementById("profile-name").textContent = `${user["Nombres"]} ${user["Apellidos"]}`;
+                document.getElementById("profile-email").textContent = user["Email"];
             });
 
-            document.getElementById("updateForm").addEventListener("submit" , (evt) => {
+            document.getElementById("updateForm").addEventListener("submit", (evt) => {
                 evt.preventDefault();
                 const nombre = document.getElementById("nombre").value;
                 const apellido = document.getElementById("apellido").value;
@@ -103,7 +312,7 @@
                 })
                 .then(() => {
                     location.reload();
-                })
+                });
             });
 
             document.getElementById("closeSession").addEventListener("click", () => {
@@ -114,12 +323,10 @@
 
         // Responsive navbar script
         document.querySelector('.hamburger').addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('nav-active');
+            document.querySelector('.nav-list').classList.toggle('nav-active');
         });
     </script>
 </body>
 
 </html>
-
-
 
