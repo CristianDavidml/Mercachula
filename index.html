@@ -116,11 +116,19 @@
 											
 										</article>
 										<article>
+											<a href="#" class="image"><img src="images/mercado.jpg" alt="" /></a>
+											<h3>Compras Locales</h3>
+											<p>Descubre mercados y tiendas locales donde podrás comprar artesanías y productos típicos de la región.</p>
+											<ul class="actions">
+												
+											</ul>
+										</article>
+										<article>
 											<a href="#" class="image"><img src="images/comida-mexica.jpg" alt="" /></a>
 											<h3>Gastronomía</h3>
 											<p>Degusta los sabores únicos de la cocina chiapaneca en los diversos restaurantes locales.</p>
 											<ul class="actions">
-												<li><a href="#" class="button">Más Información</a></li>
+												<li><a href="/pages/listadecomercios/listarestaurante.html" class="button">Más Información</a></li>
 											</ul>
 										</article>
 										<article>
@@ -128,17 +136,10 @@
 											<h3>Hoteles y Hospedaje</h3>
 											<p>Encuentra opciones de alojamiento que se ajusten a tus necesidades y presupuesto.</p>
 											<ul class="actions">
-												<li><a href="#" class="button">Más Información</a></li>
+												<li><a href="/pages/listadecomercios/listahoteles.html" class="button">Más Información</a></li>
 											</ul>
 										</article>
-										<article>
-											<a href="#" class="image"><img src="images/mercado.jpg" alt="" /></a>
-											<h3>Compras Locales</h3>
-											<p>Descubre mercados y tiendas locales donde podrás comprar artesanías y productos típicos de la región.</p>
-											<ul class="actions">
-												<li><a href="#" class="button">Más Información</a></li>
-											</ul>
-										</article>
+										
 									</div>
 								</section>
 
@@ -168,8 +169,8 @@
 										<li>
 											<span class="opener">Comercios</span>
 											<ul>
-												<li><a href="/pages/hoteles/lista_hoteles.html">Hoteles</a></li>
-												<li><a href="/pages/hoteles/resta.html">Restaurantes</a></li>
+												<li><a href="/pages/listadecomercios/listahoteles.html">Hoteles</a></li>
+												<li><a href="/pages/listadecomercios/listarestaurante.html">Restaurantes</a></li>
 												
 											</ul>
 										</li>
@@ -180,7 +181,7 @@
 												<li><a href="/pages/registro/registro.html">Registrarse</a></li>
 											</ul>
 										</li>
-										<li><a href="/pages/perfil/perfil.html">Mi perfil</a></li>
+										<li><a id="profile" href="/pages/perfil/perfil.html">Mi perfil</a></li>
 									</ul>
 								</nav>
 
@@ -237,6 +238,16 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				document.addEventListener("DOMContentLoaded", () => {
+					if (localStorage.getItem("token")) {
+						document.getElementById("profile").style.display = ""
+					}
+					else {
+						document.getElementById("profile").style.display = "none"
+					}
+				})
+			</script>
 
 	</body>
 </html>

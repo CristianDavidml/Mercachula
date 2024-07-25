@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Hotel</title>
+    <link rel="stylesheet" href="/css/aghotel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            margin-left: 20px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .nav-item a:hover {
+            color: #f4d03f;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background-color: #fff;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        .alert {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-list {
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #333;
+                flex-direction: column;
+                width: 200px;
+                display: none;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-list.nav-active {
+                display: flex;
+            }
+
+            .nav-item {
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="/index.html" class="logo">Mercachula</a>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/index.html">Home</a></li>
+                <li class="nav-item"><a href="../perfil/perfil.html">Perfil</a></li>
+                <li class="nav-item"><a href="../hoteles/mi_hotel.html">Registrar empresa</a></li>
+                <li class="nav-item"><a href="../hoteles/lista_hoteles.html">Ver hoteles</a></li>
+                <li class="nav-item"><a href="../restaurantes/lista_restaurantes.html">Ver restaurantes</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h2 class="title">Edita Comercio</h2>
+            <form id="updateHotelForm" class="form">
+                <div class="form-group">
+                    <label for="NombreComercio" class="form-label">Nombre del Comercio:</label>
+                    <input type="text" class="form-input" id="NombreComercio" name="NombreComercio" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Descripcion" class="form-label">Descripción:</label>
+                    <textarea class="form-input" id="Descripcion" name="Descripcion" placeholder="Describe tu comercio (precio-horario)" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo" class="form-label">Tipo Comercio:</label>
+                    <select class="form-input" id="tipo" name="tipo" required>
+                        <option value="Hotel">Hotel</option>
+                        <option value="Restaurante">Restaurante</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="LinkUbicacion" class="form-label">Link de Ubicación:</label>
+                    <input type="text" class="form-input" id="LinkUbicacion" name="LinkUbicacion" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="NumeroContacto" class="form-label">Número del Comercio:</label>
+                    <input type="tel" class="form-input" id="NumeroContacto" name="NumeroContacto" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="image" class="form-label">Imágen del Comercio:</label>
+                    <input type="file" class="form-input" id="image" name="image" multiple>
+                </div>
+
+                <button type="submit" class="btn">Editar Comercio</button>
+            </form>
+            <div class="alert alert-danger" id="errorDiv">
+                <p>Hubo un error en la creación del comercio</p>
+            </div>
+            <div class="alert alert-success" id="successDiv">
+                <p>Comercio Editado</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const commerceContext = JSON.parse(localStorage.getItem("context"));
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const commerceContext = JSON.parse(localStorage.getItem("context"));
+            console.log(commerceContext)
+            document.getElementById("NombreComercio").value = commerceContext["NombreComercio"];
+            document.getElementById("Descripcion").value = commerceContext["Descripcion"];
+            document.getElementById("LinkUbicacion").value = commerceContext["LinkUbicacion"];
+            document.getElementById("NumeroContacto").value = commerceContext["NumeroContacto"];
+            document.getElementById("tipo").value = commerceContext["tipo"];
+        })
+
+        document.getElementById("updateHotelForm").addEventListener("submit", (evt) => {
+            evt.preventDefault();
+
+            const nombre = document.getElementById("NombreComercio").value;
+            const descripcion = document.getElementById("Descripcion").value;
+            const ubicacion = document.getElementById("LinkUbicacion").value;
+            const celular = document.getElementById("NumeroContacto").value;
+            const tipo = document.getElementById("tipo").value;
+            const imagen = document.getElementById("image").files[0];
+
+
+            const formData = new FormData();
+            formData.append("NombreComercio", nombre);
+            formData.append("Descripcion", descripcion);
+            formData.append("LinkUbicacion", ubicacion);
+            formData.append("tipo", tipo);
+            formData.append("NumeroContacto", celular);
+            formData.append("image", imagen);
+
+            axios.put(`https://mercachula-api.vercel.app/commerce/${commerceContext["_id"]}?token=${localStorage.getItem("token")}`, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    }
+                })
+                .then(() => {
+                    document.getElementById("successDiv").style.display = "block";
+                })
+                .catch(() => {
+                    document.getElementById("errorDiv").style.display = "block";
+                });
+        });
+
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-list').classList.toggle('nav-active');
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+

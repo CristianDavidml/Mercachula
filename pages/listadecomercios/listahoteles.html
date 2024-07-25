@@ -1,39 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Restaurantes</title>
-    <link rel="stylesheet" href="/css/">
+    <title>Lista de Hoteles</title>
+    <link rel="stylesheet" href="/css/hoteles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         /* General styles */
-        button{
-            color: #ddd;
-        }
-        .delete {
-            background-color: rgba(13, 179, 68, 0.681);
-            padding: 2px;
-            color: white;
-            border-radius: 2px;
-        }
-
-        .delete:hover {
-            background-color: rgb(255, 0, 0);
-        }
-        
-        .edit {
-            background-color: rgb(83, 109, 170);
-            padding: 2px;
-            color: whitesmoke;
-            border-radius: 2px;
-        }
-
-        .edit:hover {
-            background-color: rgb(46, 147, 181);
-        }
-
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -106,7 +81,7 @@
             justify-content: center;
         }
 
-        .restaurant-card {
+        .hotel-card {
             background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -117,27 +92,28 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .restaurant-card:hover {
+        .hotel-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .restaurant-image {
+        .hotel-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            loading: lazy; /* Load images lazily */
         }
 
-        .restaurant-info {
+        .hotel-info {
             padding: 15px;
         }
 
-        .restaurant-info h2 {
+        .hotel-info h2 {
             font-size: 20px;
             margin: 0 0 10px;
         }
 
-        .restaurant-info p {
+        .hotel-info p {
             margin: 5px 0;
             color: #555;
         }
@@ -156,6 +132,7 @@
                 width: 200px;
                 display: none;
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                padding: 10px;
             }
 
             .nav-list.nav-active {
@@ -175,8 +152,8 @@
             <a href="/index.html" class="logo">Mercachula</a>
             <ul class="nav-list">
                 <li class="nav-item"><a href="/index.html">Inicio</a></li>
-                <li class="nav-item"><a href="../perfil/perfil.html">Perfil</a></li>
-                <li class="nav-item"><a href="../hoteles/mi_hotel.html">Registrar empresa</a></li>
+                <li class="nav-item"><a href="/pages/perfil/perfil.html">Perfil</a></li>
+                <li class="nav-item"><a href="/pages/hoteles/mi_hotel.html">Registrar empresa</a></li>
                 <li class="nav-item"><a href="/pages/listadecomercios/listahoteles.html">Ver hoteles</a></li>
                 <li class="nav-item"><a href="/pages/listadecomercios/listarestaurante.html">Ver restaurantes</a></li>
             </ul>
@@ -187,59 +164,43 @@
             </div>
         </nav>
     </header>
-    
 
     <main class="main-content">
-        <div class="container profile-page" id="restaurants">
+        <div class="container profile-page" id="hotels">
             <!-- Content will be inserted here dynamically -->
         </div>
-        
     </main>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            axios.get(`https://mercachula-api.vercel.app/commerce?token=${localStorage.getItem("token")}`, {
+            axios.get(`https://mercachula-api.vercel.app/commerce/all?token=${localStorage.getItem("token")}`, {
                 responseType: "json"
             })
-                .then((commerceData) => {
-                    commerceData.data.forEach((obj, counter) => {
-                        if (obj.tipo == "Restaurante") {
-
-                            const html = `
-                                <div class="restaurant-card">
-                                    <img src=${obj.image.url} alt="${obj.NombreComercio}" class="restaurant-image">
-                                    <div class="restaurant-info">
-                                        <h2>${obj.NombreComercio}</h2>
-                                        <p><strong>Tipo:</strong> ${obj.tipo}</p>
-                                        <p><strong>Contacto:</strong> ${obj.NumeroContacto}</p>
-                                        <p><strong>Ubicación:</strong> <a href="${obj.LinkUbicacion}" target="_blank">Ver en mapa</a></p>
-                                        <p>${obj.Descripcion}</p>
-                                        <button id="delete${counter}" class="delete" type="submit">Eliminar</button>
-                                        <button id="update${counter}" class="edit" type="submit"><a href="/pages/editarcomecio/editcomer.html">Editar</button>
-                                    </div>
-                                </div>`
-                            localStorage.setItem(`update${counter}`, JSON.stringify(obj));
-                            document.getElementById("restaurants").insertAdjacentHTML('beforeend', html);
-                            document.getElementById(`update${counter}`).addEventListener("click", () => {
-                                localStorage.setItem("context", localStorage.getItem(`update${counter}`))
-                            })
-                            document.getElementById(`delete${counter}`).addEventListener("click", () => {
-                                axios.delete(`https://mercachula-api.vercel.app/commerce/${obj._id}?token=${localStorage.getItem("token")}`, {
-                                    responseType: "json"
-                                }).then(() => {
-                                    location.reload();
-                                })
-                            })
-                        }
-                        
+                .then((response) => {
+                    const commerceData = response.data;
+                    commerceData.filter(obj => obj.tipo === 'Hotel').forEach((obj) => {
+                        const html = `
+                            <div class="hotel-card">
+                                <img src="${obj.image.url}" alt="${obj.NombreComercio}" class="hotel-image">
+                                <div class="hotel-info">
+                                    <h2>${obj.NombreComercio}</h2>
+                                    <p><strong>Tipo:</strong> ${obj.tipo}</p>
+                                    <p><strong>Contacto:</strong> ${obj.NumeroContacto}</p>
+                                    <p><strong>Ubicación:</strong> <a href="${obj.LinkUbicacion}" target="_blank">Ver en mapa</a></p>
+                                    <p>${obj.Descripcion}</p>
+                                </div>
+                            </div>`;
+                        document.getElementById("hotels").insertAdjacentHTML('beforeend', html);
                     });
                 })
+                .catch(error => console.error('Error fetching data:', error));
         });
 
         document.querySelector('.hamburger').addEventListener('click', () => {
             document.querySelector('.nav-list').classList.toggle('nav-active');
         });
-
     </script>
+
+    
 </body>
 </html>

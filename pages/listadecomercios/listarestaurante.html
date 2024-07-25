@@ -4,36 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Restaurantes</title>
-    <link rel="stylesheet" href="/css/">
+    <link rel="stylesheet" href="/css/hoteles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         /* General styles */
-        button{
-            color: #ddd;
-        }
-        .delete {
-            background-color: rgba(13, 179, 68, 0.681);
-            padding: 2px;
-            color: white;
-            border-radius: 2px;
-        }
-
-        .delete:hover {
-            background-color: rgb(255, 0, 0);
-        }
-        
-        .edit {
-            background-color: rgb(83, 109, 170);
-            padding: 2px;
-            color: whitesmoke;
-            border-radius: 2px;
-        }
-
-        .edit:hover {
-            background-color: rgb(46, 147, 181);
-        }
-
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -187,59 +162,39 @@
             </div>
         </nav>
     </header>
-    
 
     <main class="main-content">
         <div class="container profile-page" id="restaurants">
             <!-- Content will be inserted here dynamically -->
         </div>
-        
     </main>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            axios.get(`https://mercachula-api.vercel.app/commerce?token=${localStorage.getItem("token")}`, {
+            axios.get(`https://mercachula-api.vercel.app/commerce/all?token=${localStorage.getItem("token")}`, {
                 responseType: "json"
             })
                 .then((commerceData) => {
-                    commerceData.data.forEach((obj, counter) => {
-                        if (obj.tipo == "Restaurante") {
-
-                            const html = `
-                                <div class="restaurant-card">
-                                    <img src=${obj.image.url} alt="${obj.NombreComercio}" class="restaurant-image">
-                                    <div class="restaurant-info">
-                                        <h2>${obj.NombreComercio}</h2>
-                                        <p><strong>Tipo:</strong> ${obj.tipo}</p>
-                                        <p><strong>Contacto:</strong> ${obj.NumeroContacto}</p>
-                                        <p><strong>Ubicación:</strong> <a href="${obj.LinkUbicacion}" target="_blank">Ver en mapa</a></p>
-                                        <p>${obj.Descripcion}</p>
-                                        <button id="delete${counter}" class="delete" type="submit">Eliminar</button>
-                                        <button id="update${counter}" class="edit" type="submit"><a href="/pages/editarcomecio/editcomer.html">Editar</button>
-                                    </div>
-                                </div>`
-                            localStorage.setItem(`update${counter}`, JSON.stringify(obj));
-                            document.getElementById("restaurants").insertAdjacentHTML('beforeend', html);
-                            document.getElementById(`update${counter}`).addEventListener("click", () => {
-                                localStorage.setItem("context", localStorage.getItem(`update${counter}`))
-                            })
-                            document.getElementById(`delete${counter}`).addEventListener("click", () => {
-                                axios.delete(`https://mercachula-api.vercel.app/commerce/${obj._id}?token=${localStorage.getItem("token")}`, {
-                                    responseType: "json"
-                                }).then(() => {
-                                    location.reload();
-                                })
-                            })
-                        }
-                        
-                    });
+                    commerceData.data.filter(obj => obj.tipo === 'Restaurante').map((obj) => {
+                        const html = `
+                            <div class="restaurant-card">
+                                <img src=${obj.image.url} alt="${obj.NombreComercio}" class="restaurant-image">
+                                <div class="restaurant-info">
+                                    <h2>${obj.NombreComercio}</h2>
+                                    <p><strong>Tipo:</strong> ${obj.tipo}</p>
+                                    <p><strong>Contacto:</strong> ${obj.NumeroContacto}</p>
+                                    <p><strong>Ubicación:</strong> <a href="${obj.LinkUbicacion}" target="_blank">Ver en mapa</a></p>
+                                    <p>${obj.Descripcion}</p>
+                                </div>
+                            </div>`
+                        document.getElementById("restaurants").insertAdjacentHTML('beforeend', html);
+                    })
                 })
         });
 
         document.querySelector('.hamburger').addEventListener('click', () => {
             document.querySelector('.nav-list').classList.toggle('nav-active');
         });
-
     </script>
 </body>
 </html>

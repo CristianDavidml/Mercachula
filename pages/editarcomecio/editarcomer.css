@@ -141,33 +141,7 @@ body {
 }
 
 .btn:hover {
-    background-color: #4548a0;
-}
-
-.btn2 {
-    display: inline-block;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn2:hover {
-    background-color: red;
-}
-
-.botonperfil {
-    display: inline-block;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    background-color: #45a049;
 }
 
 .item-list {

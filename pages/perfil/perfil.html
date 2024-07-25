@@ -16,8 +16,9 @@
                 <a href="/index.html" class="logo">Mercachula</a>
                 <ul class="nav-links">
                     <li><a href="/index.html">Inicio</a></li>
-                    <li><a href="/user/profile.html">Perfil</a></li>
-                    <li><a href="../hoteles/lista_hoteles.html">Ver Empresas</a></li>
+                    <li><a href="/pages/perfil/perfil.html">Perfil</a></li>
+                    <li><a href="/pages/listadecomercios/listahoteles.html">Hoteles</a></li>
+                    
                 </ul>
                 <div class="hamburger">
                     <span></span>
@@ -31,8 +32,7 @@
             <aside class="profile-sidebar">
                 <ul>
                     <li><a href="./perfil.html">Datos Personales</a></li>
-                    <li><a href="../hoteles/mi_hotel.html">Mis Hoteles</a></li>
-                    <li><a href="../hoteles/resta.html">Mis Restaurantes</a></li>
+                    
                 </ul>
             </aside>
 
@@ -57,17 +57,20 @@
                             <input type="text" id="celular">
                         </div>
                         <button type="submit" class="btn">Editar</button>
+                        <button type="submit" id="closeSession" class="btn2">Cerrar Sesion</button>
                     </section>
                 </form>
 
                 <section id="mis-hoteles" class="profile-section">
                     <h2>Mis Hoteles</h2>
-                    <div id="hoteles-list" class="item-list"></div>
+                    <button class="botonperfil"><a href="/pages/hoteles/lista_hoteles.html">Entrar</a></button>
+                    
                 </section>
 
                 <section id="mis-restaurantes" class="profile-section">
                     <h2>Mis Restaurantes</h2>
-                    <div id="restaurantes-list" class="item-list"></div>
+                    <button class="botonperfil"><a href="/pages/hoteles/resta.html">Entrar</a></button>
+                    
                 </section>
             </main>
         </div>
@@ -103,31 +106,10 @@
                 })
             });
 
-            const loadUserHotels = (userId) => {
-                axios.get(`https://mercachula-api.vercel.app/hotels?user=${userId}`)
-                .then((response) => {
-                    const hotelesList = document.getElementById("hoteles-list");
-                    response.data.forEach((hotel) => {
-                        const hotelItem = document.createElement("div");
-                        hotelItem.className = "item";
-                        hotelItem.innerHTML = `<h3>${hotel.name}</h3><p>${hotel.description}</p>`;
-                        hotelesList.appendChild(hotelItem);
-                    });
-                });
-            };
-
-            const loadUserRestaurants = (userId) => {
-                axios.get(`https://mercachula-api.vercel.app/restaurants?user=${userId}`)
-                .then((response) => {
-                    const restaurantesList = document.getElementById("restaurantes-list");
-                    response.data.forEach((restaurant) => {
-                        const restaurantItem = document.createElement("div");
-                        restaurantItem.className = "item";
-                        restaurantItem.innerHTML = `<h3>${restaurant.name}</h3><p>${restaurant.description}</p>`;
-                        restaurantesList.appendChild(restaurantItem);
-                    });
-                });
-            };
+            document.getElementById("closeSession").addEventListener("click", () => {
+                localStorage.removeItem("token");
+                window.location.href = '../../index.html';
+            });
         });
 
         // Responsive navbar script
