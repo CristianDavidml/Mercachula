@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Próximamente</title>
+    <link rel="stylesheet" href="/pages/lugaresfuera/lugaresfuera.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Próximamente</h1>
+        <p id="message">Este apartado estará disponible próximamente.</p>
+        <button onclick="showMessage()">Más información</button>
+        <button type="submit"><a href="/index.html">Regresar</a></button>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        function showMessage() {
+    const message = document.getElementById('message');
+    message.innerText = "¡Gracias por tu interés! Estamos trabajando arduamente para traer este apartado lo antes posible.";
+}
+
+    </script>
+</body>
+</html>
